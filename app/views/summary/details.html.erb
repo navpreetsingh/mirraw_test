@@ -1,0 +1,26 @@
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th> Order Number </th>
+					<th> Order Date </th>
+					<th> Total Order Amount</th>
+					<th> Status </th>
+					<th> Action </th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @order_details.each do |od| %>
+					<tr>
+						<td> <%= od.number %> </td>
+						<% date = od.date.strftime("%B %A %d,%Y at%l:%M%p") %>
+						<td> <%=  date %> </td>
+						<% total = od.total.round(1) %>
+						<td> <%= total %> </td>				
+						<% status = "#{od.status}/#{@order_status_total.find(od.id).total_status}" %>
+						<td> <%= status  %> </td>
+						<td> <%= link_to "Download Bill", summary_print_bill_path(number: od.number, date: date, total: total, status: status, customername: od.customer_name) %> </td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>

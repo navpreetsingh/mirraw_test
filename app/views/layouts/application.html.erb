@@ -7,8 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="container">		
+		<div class = "row">
 
-<%= yield %>
-
+			<div class = "col-xs-2"></div>
+		  <div class = "col-xs-8" id = "data_center">
+		  	<h1>Welcome to Mirraw Test</h1> 
+				<%= yield %>		
+			</div>
+			<div class = "col-xs-2"></div>
+		</div>
+	</div>
 </body>
 </html>
