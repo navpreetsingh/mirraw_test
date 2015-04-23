@@ -1,3 +1,5 @@
 class Order < ActiveRecord::Base
-	has_and_belongs_to_many :items, :join_table => "orders_items"
+	has_many :items
+  validates :number, :date, :customer_name, presence: true
+  validates :number, uniqueness: true
 end

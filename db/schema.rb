@@ -11,23 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422190541) do
+ActiveRecord::Schema.define(version: 20150422185540) do
 
   create_table "items", force: :cascade do |t|
+    t.integer  "order_id",     limit: 4
     t.string   "product_name", limit: 255
     t.integer  "quantity",     limit: 4
     t.float    "rate",         limit: 24
-    t.boolean  "received",     limit: 1
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.boolean  "received",     limit: 1,   default: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
-  create_table "items_orders", id: false, force: :cascade do |t|
-    t.integer "order_id", limit: 4, null: false
-    t.integer "item_id",  limit: 4, null: false
-  end
-
-  add_index "items_orders", ["order_id", "item_id"], name: "index_items_orders_on_order_id_and_item_id", using: :btree
+  add_index "items", ["order_id"], name: "index_items_on_order_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "number",        limit: 4
