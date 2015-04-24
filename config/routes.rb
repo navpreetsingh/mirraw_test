@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
 
   get 'summary/details'
+  get 'summary/load_bill'
   get 'summary/print_bill'
 
   resources :orders do

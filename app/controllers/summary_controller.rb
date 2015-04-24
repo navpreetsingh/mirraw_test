@@ -7,11 +7,16 @@ class SummaryController < ApplicationController
   	@order_status_total = Order.joins(:items).select("orders.id, count(received) as total_status").group("orders.id")
   end
 
+  def load_bill
+    render layout: false
+  end
+
   def print_bill
   	order = params  	
     send_data generate_pdf(order),
               filename: "#{order[:number]}.pdf",
-              type: "application/pdf"
+              type: "application/pdf",
+              disposition: "inline"    
   end
 
   private
